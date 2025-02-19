@@ -9,7 +9,15 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
+class AppData {
+    static var points = 0
+}
+
 class GameViewController: UIViewController {
+
+    @IBOutlet weak var scoreLabel: UILabel!
+    
+    var play: GameScene!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +32,9 @@ class GameViewController: UIViewController {
             if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
+                
+                // add this line of code (getting/initializing a reference to the GameScene)
+                play = scene as? GameScene
                 
                 // Present the scene
                 view.presentScene(scene)
@@ -43,4 +54,11 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    
+    @IBAction func jumpAction(_ sender: UIButton) {
+        play.ball.physicsBody?.velocity.dy = 600
+        scoreLabel.text = "Score: \(AppData.points)"
+    }
+    
 }
