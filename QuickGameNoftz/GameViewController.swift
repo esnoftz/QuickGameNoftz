@@ -11,11 +11,14 @@ import GameplayKit
 
 class AppData {
     static var points = 0
+    static var ending = ""
 }
 
 class GameViewController: UIViewController {
 
     @IBOutlet weak var scoreLabel: UILabel!
+    
+    @IBOutlet weak var endingLabel: UILabel!
     
     var play: GameScene!
 
@@ -57,8 +60,11 @@ class GameViewController: UIViewController {
     
     
     @IBAction func jumpAction(_ sender: UIButton) {
-        play.ball.physicsBody?.velocity.dy = 600
+        play.ball.physicsBody?.velocity.dy = 800
         scoreLabel.text = "Score: \(AppData.points)"
+        if AppData.ending != "" {
+            endingLabel.text = "\(AppData.ending)"
+        }
     }
     
 }

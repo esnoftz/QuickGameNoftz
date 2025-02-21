@@ -24,6 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         cam.position.x = ball.position.x + 300
+        cam.position.y = ball.position.y + 100
         ball.physicsBody?.velocity.dx = 300
 
     }
@@ -43,6 +44,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             AppData.points = 0
         } else if contact.bodyA.node?.name == "scarletOverkill" || contact.bodyB.node?.name == "scarletOverkill" {
             AppData.points = 0
+        } else if contact.bodyA.node?.name == "bratt" || contact.bodyB.node?.name == "bratt" {
+            AppData.points = 0
+        } else if contact.bodyA.node?.name == "vector" || contact.bodyB.node?.name == "vector" {
+            AppData.points = 0
+        } else if contact.bodyA.node?.name == "end" || contact.bodyB.node?.name == "end" {
+            if AppData.points > 0 {
+                AppData.ending = "YOU WIN!"
+            } else {
+                AppData.ending = "YOU LOSE!"
+            }
+
         }
 
     }
